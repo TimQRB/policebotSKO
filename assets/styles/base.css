@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  --police-dark: #1a2332;
+  --police-blue: #0d3b66;
+  --police-gold: #c5a127;
+  --police-light: #f5f7fa;
+  --police-accent: #2563eb;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #0d1b2a 100%);
+  min-height: 100vh;
+}
+
+
+
+

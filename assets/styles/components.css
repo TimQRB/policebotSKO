@@ -1,0 +1,39 @@
+.police-gradient {
+  background: linear-gradient(135deg, var(--police-dark) 0%, var(--police-blue) 100%);
+}
+
+.gold-border {
+  border: 2px solid var(--police-gold);
+}
+
+.chat-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.message-user {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+.message-bot {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.btn-police {
+  background: linear-gradient(135deg, #c5a127 0%, #d4af37 100%);
+  color: #1a2332;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-police:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(197, 161, 39, 0.4);
+}
+
+.admin-card {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+

@@ -1,0 +1,56 @@
+/* Мобильные стили */
+
+/* Улучшенная прокрутка на мобильных */
+@media (max-width: 640px) {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Минимальные размеры для touch устройств */
+  button,
+  input,
+  select {
+    min-height: 44px;
+  }
+  
+  /* Улучшенные отступы для мобильных */
+  .chat-container {
+    min-height: calc(100dvh - 160px) !important;
+  }
+}
+
+/* Планшеты */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .chat-container {
+    min-height: calc(100vh - 200px);
+  }
+}
+
+/* Touch устройства */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  input,
+  select {
+    min-height: 44px;
+  }
+  
+  .btn-police {
+    min-height: 48px;
+  }
+}
+
+/* Ландшафтная ориентация на мобильных */
+@media (max-width: 896px) and (orientation: landscape) {
+  .chat-container {
+    min-height: calc(100dvh - 150px);
+  }
+  
+  header {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+
+
+
