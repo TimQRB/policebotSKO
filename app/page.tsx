@@ -118,35 +118,35 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="police-gradient py-3 sm:py-4 px-3 sm:px-6 shadow-lg">
-        <div className="max-w-6xl mx-auto flex justify-between items-center gap-2">
+    <div className="min-h-screen flex flex-col bg-[#f4f6f8]">
+      <header className="bg-white border-b border-gray-200">
+        <div className="max-w-6xl mx-auto py-3 sm:py-4 px-3 sm:px-6 flex justify-between items-center gap-2">
           <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
             <img
               src="/assets/images/download.png"
               alt="Scroll"
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0 gold-border"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
             />
             <div className="min-w-0">
-              <h1 className="text-lg sm:text-xl font-bold text-white truncate">
+              <h1 className="text-lg sm:text-xl font-bold text-slate-900 truncate">
                 {t.title}
               </h1>
-              <p className="text-yellow-400 text-xs sm:text-sm truncate">
+              <p className="text-slate-500 text-xs sm:text-sm truncate">
                 {t.subtitle}
               </p>
             </div>
           </div>
           <button
             onClick={() => router.push("/login")}
-            className="btn-police px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-base whitespace-nowrap flex-shrink-0"
+            className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-slate-300 text-xs sm:text-base text-slate-800 hover:bg-slate-100 transition-colors whitespace-nowrap flex-shrink-0"
           >
             {t.login}
           </button>
         </div>
       </header>
 
-      <main className="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-4 lg:p-5 flex flex-col">
-        <div className="chat-container flex-1 rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 flex flex-col min-h-[calc(100dvh-180px)] sm:min-h-[500px]">
+      <main className="flex-1 w-full flex justify-center px-3 sm:px-4 lg:px-5 py-4 sm:py-6">
+        <div className="chat-container w-full max-w-5xl flex-1 rounded-2xl bg-white border border-slate-200 shadow-sm p-4 sm:p-6 flex flex-col min-h-[calc(100dvh-190px)] sm:min-h-[480px]">
           <ChatMessages
             messages={messages}
             loading={loading}

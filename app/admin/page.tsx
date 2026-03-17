@@ -518,33 +518,39 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <header className="police-gradient py-3 sm:py-4 px-3 sm:px-6 shadow-lg">
-        <div className="max-w-7xl mx-auto flex justify-between items-center gap-2">
+    <div className="min-h-screen flex flex-col bg-[#f4f6f8]">
+      <header className="bg-white border-b border-gray-200">
+        <div className="max-w-6xl mx-auto py-3 sm:py-4 px-3 sm:px-6 flex justify-between items-center gap-2">
           <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
             <img
               src="/assets/images/download.png"
               alt="Scroll"
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0 gold-border"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0"
             />
             <div className="min-w-0">
-              <h1 className="text-base sm:text-xl font-bold text-white truncate">Scroll</h1>
-              <p className="text-yellow-400 text-xs sm:text-sm truncate">Управление документами</p>
+              <h1 className="text-base sm:text-xl font-bold text-slate-900 truncate">Scroll</h1>
+              <p className="text-slate-500 text-xs sm:text-sm truncate">Управление документами</p>
             </div>
           </div>
           <div className="flex gap-2 sm:gap-3 flex-shrink-0">
-            <button onClick={() => router.push("/")} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-colors text-xs sm:text-sm whitespace-nowrap">
-              <span className="hidden sm:inline">На сайт</span>
-              <span className="sm:hidden">Сайт</span>
+            <button
+              onClick={() => router.push("/")}
+              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-slate-300 text-xs sm:text-sm text-slate-800 hover:bg-slate-100 transition-colors whitespace-nowrap"
+            >
+              На сайт
             </button>
-            <button onClick={handleLogout} className="px-2 sm:px-4 py-1.5 sm:py-2 bg-red-500/80 text-white rounded-lg hover:bg-red-600 transition-colors text-xs sm:text-sm whitespace-nowrap">
+            <button
+              onClick={handleLogout}
+              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-red-500 text-white text-xs sm:text-sm hover:bg-red-600 transition-colors whitespace-nowrap"
+            >
               Выход
             </button>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto p-3 sm:p-4 lg:p-6">
+      <main className="flex-1 w-full flex justify-center px-3 sm:px-4 lg:px-5 py-4 sm:py-6">
+        <div className="w-full max-w-6xl bg-white border border-slate-200 rounded-2xl shadow-sm p-3 sm:p-4 lg:p-6">
         <div className="mb-4 sm:mb-6 border-b border-gray-200 overflow-x-auto">
           <nav className="flex gap-1 min-w-max sm:min-w-0">
             <button
@@ -1311,6 +1317,7 @@ export default function AdminPage() {
             </div>
           </div>
         )}
+      </div>
       </main>
 
       {viewHtml !== null && (

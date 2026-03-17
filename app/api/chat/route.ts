@@ -177,9 +177,11 @@ function isWhoAreYou(text: string): boolean {
 function isWhatCanYouDo(text: string): boolean {
   const t = text.toLowerCase().replace(/\s+/g, ' ').trim();
   const patterns = [
-    'что умеешь', 'что ты умеешь', 'на что можешь ответить', 'чем можешь помочь',
-    'твои возможности', 'что можешь', 'какие вопросы', 'на что отвечаешь',
+    'что умеешь', 'что ты умеешь', 'что ты можешь', 'что можешь',
+    'на что можешь ответить', 'на что ответишь', 'на что ты ответишь',
+    'чем можешь помочь', 'твои возможности', 'какие вопросы', 'на что отвечаешь',
     'не істей аласың', 'неге жауап бере аласың', 'мүмкіндіктерің', 'қандай сұрақтар',
+    'what can you do', 'what do you know', 'what can you answer', 'what are you able',
   ];
   return patterns.some(p => t.includes(p));
 }
