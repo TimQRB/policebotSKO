@@ -221,13 +221,33 @@ export async function POST(request: NextRequest) {
   let lastMessage = '';
   let lastSessionId: string | null = null;
   try {
-    const openai = getOpenAIClient();
-    await initDB();
     const body = await request.json();
     const { message, sessionId } = body;
     language = body.language || 'ru';
     lastMessage = message;
     lastSessionId = sessionId || null;
+
+    if (!process.env.OPENAI_API_KEY) {
+      const msg =
+        language === 'kz'
+          ? 'Сервер дұрыс бапталмаған: OPENAI_API_KEY жоқ.'
+          : language === 'en'
+          ? 'Server is misconfigured: OPENAI_API_KEY is missing.'
+          : 'Сервер не настроен: отсутствует OPENAI_API_KEY.';
+      return NextResponse.json({ response: msg }, { status: 500 });
+    }
+    if (!process.env.DATABASE_URL) {
+      const msg =
+        language === 'kz'
+          ? 'Сервер дұрыс бапталмаған: DATABASE_URL жоқ.'
+          : language === 'en'
+          ? 'Server is misconfigured: DATABASE_URL is missing.'
+          : 'Сервер не настроен: отсутствует DATABASE_URL.';
+      return NextResponse.json({ response: msg }, { status: 500 });
+    }
+
+    const openai = getOpenAIClient();
+    await initDB();
 
     const ipAddress = getClientIP(request);
     const rl = rateLimit({ key: `chat:${ipAddress}`, windowMs: 60_000, max: 30 });
@@ -496,8 +516,28 @@ ${context}`;
         // ignore logging errors
       }
     }
+    const errText = error instanceof Error ? error.message : String(error);
+    const lower = errText.toLowerCase();
     const errorMessage =
-      language === 'kz'
+      lower.includes('missing openai_api_key') || lower.includes('missing credentials')
+        ? language === 'kz'
+          ? 'Сервер дұрыс бапталмаған: OPENAI_API_KEY жоқ.'
+          : language === 'en'
+          ? 'Server is misconfigured: OPENAI_API_KEY is missing.'
+          : 'Сервер не настроен: отсутствует OPENAI_API_KEY.'
+        : lower.includes('database_url')
+        ? language === 'kz'
+          ? 'Сервер дұрыс бапталмаған: DATABASE_URL жоқ.'
+          : language === 'en'
+          ? 'Server is misconfigured: DATABASE_URL is missing.'
+          : 'Сервер не настроен: отсутствует DATABASE_URL.'
+        : lower.includes('ssl') || lower.includes('certificate')
+        ? language === 'kz'
+          ? 'Дерекқорға қосылу қатесі (SSL). DATABASE_URL параметрлерін тексеріңіз.'
+          : language === 'en'
+          ? 'Database connection error (SSL). Check DATABASE_URL settings.'
+          : 'Ошибка подключения к базе данных (SSL). Проверьте параметры DATABASE_URL.'
+        : language === 'kz'
         ? 'Сұрау өңдеу қатесі.'
         : language === 'en'
         ? 'An error occurred while processing your request.'
