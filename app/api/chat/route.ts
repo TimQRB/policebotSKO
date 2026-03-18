@@ -4,9 +4,13 @@ import { query, initDB } from '@/lib/db';
 import { extractKeywords, splitIntoChunks } from '@/lib/chunker';
 import { rateLimit } from '@/lib/rateLimit';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+function getOpenAIClient() {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error('Missing OPENAI_API_KEY');
+  }
+  return new OpenAI({ apiKey });
+}
 
 async function ensureChunksExist() {
   const missing = await query(`
@@ -217,6 +221,7 @@ export async function POST(request: NextRequest) {
   let lastMessage = '';
   let lastSessionId: string | null = null;
   try {
+    const openai = getOpenAIClient();
     await initDB();
     const body = await request.json();
     const { message, sessionId } = body;
